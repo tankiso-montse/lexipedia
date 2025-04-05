@@ -14,13 +14,13 @@ export const getSearchedWord = async () => {
       },
       meanings: [
         {
-          partOfSpeech: data.meanings[0].partOfSpeech,
+          partOfSpeech: data[0].meanings[0].partOfSpeech,
           definitions: [
             {
-              definition: data.meanings[0].definitions[0].definition,
-              example: data.meanings[0].definitions[0].example, 
-              synonyms: data.synonyms[0],
-              antonyms: data.antonyms[0],
+              definition: data[0].meanings[0].definitions[0].definition,
+              example: data[0].meanings[0].definitions[0].example, 
+              synonyms: data[0].synonyms,
+              antonyms: data[0].antonyms,
             },
           ],
         },
