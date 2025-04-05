@@ -1,10 +1,10 @@
 export type searchedWord = {
-  word: string;
+  word?: string;
   phonetics?: {
     text?: string;
     audio?: string;
   };
-  meanings: {
+  meanings?: {
     partOfSpeech: string;
     definitions?: {
       definition: string;
@@ -13,4 +13,9 @@ export type searchedWord = {
       antonyms?: string[];
     }[];
   }[];
-};
+  wordNotFound?: {
+    title: string;
+    message: string;
+    resolution?: string;
+  };
+}
