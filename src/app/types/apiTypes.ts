@@ -4,10 +4,10 @@ export type searchedWord = {
     text?: string;
     audio?: string;
   };
-  meanings?: {
+  meanings: {
     partOfSpeech: string;
     definitions?: {
-      definition?: string;
+      definition: string;
       example?: string;
       synonyms?: string[];
       antonyms?: string[];
