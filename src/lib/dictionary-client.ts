@@ -1,10 +1,10 @@
 import { searchedWord } from "@/app/types/apiTypes";
-import { error } from "console";
 
 export const getSearchedWord = async () => {
   try {
     const response = await fetch(process.env.NEXT_PUBLIC_HOSTNAME + `/api/search`);
     const data = await response.json();
+
     if (data[0]?.word) {
       const searchedTermData: searchedWord = {
         word: data[0].word,
@@ -19,7 +19,7 @@ export const getSearchedWord = async () => {
               {
                 definition: data[0].meanings[0].definitions[0].definition,
                 example: data[0].meanings[0].definitions[0].example, 
-                synonyms: data[0].synonyms[0],
+                synonyms: data[0].synonyms,
                 antonyms: data[0].antonyms,
               },
             ],
@@ -37,7 +37,7 @@ export const getSearchedWord = async () => {
       };
       return wordNotFound;
     }
-  } catch {
+  } catch (error) {
     console.error('Error fetching word data:', error);
   }
 };
