@@ -1,6 +1,10 @@
+'use client';
 import { ArrowRight } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 export default function Home() {
+  const router = useRouter();
+
   return (
     <main className="h-full w-full">
       <div className="h-screen w-full relative">
@@ -21,9 +25,10 @@ export default function Home() {
           </h2>
 
           <button
+          onClick={() => router.push('/search')}
             className="
               w-[200px] h-[70px] mt-12
-              bg-amber-500 text-white  leading-[1.2] text-4xl font-averia
+              bg-[#d3740e]  text-white  leading-[1.2] text-3xl font-averia
               rounded-[2rem]
               hover:scale-105 transition duration-200
               flex items-center justify-center gap-2
