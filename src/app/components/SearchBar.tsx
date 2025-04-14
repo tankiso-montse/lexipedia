@@ -15,7 +15,7 @@ export default function SearchBar() {
   };
 
   return (
-    <div className="flex items-center rounded-full bg-[rgba(255,255,255,0.22)] px-4 py-2 w-[500px] shadow-lg">
+    <div className="flex items-center rounded-full px-4 py-2 w-[500px] shadow-lg z-10">
       {/* Search Icon */}
       <div className="text-[rgba(244,244,244,0.88)] mr-2">
         <Search size={20} />
@@ -27,7 +27,7 @@ export default function SearchBar() {
         placeholder="Search for a word"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        className="flex-grow bg-transparent outline-none text-[rgba(244,244,244,0.88)] placeholder-[rgba(187,187,187,0.88)]"
+        className="flex-grow outline-none text-[rgba(244,244,244,0.88)] placeholder-[rgba(187,187,187,0.88)]"
       />
 
       {/* Curved Search Button */}
