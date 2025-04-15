@@ -15,7 +15,7 @@ export default function SearchBar() {
   };
 
   return (
-    <div className="flex items-center rounded-full px-4 py-2 w-[500px] shadow-lg z-10 bg-searchBar">
+    <div className="flex items-center rounded-full px-4 py-2 w-2/6 shadow-lg bg-searchBar border border-amber-200">
         <Search size={20} className="text-white/40" />
    
       <input
@@ -27,7 +27,7 @@ export default function SearchBar() {
       />
       <button
         onClick={handleSearch}
-        className="w-[100px] ml-2 bg-amber-500 text-white px-4 py-2 rounded-full hover:bg-[#d3740e] transition"
+        className="w-[100px] ml-2 bg-amber-700/70 text-white px-4 py-2 rounded-full hover:bg-amber-600/80 transition-colors duration-300 border border-white/40"
       >
         Search
       </button>
