@@ -23,7 +23,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${averiaSerifLibre.variable} antialiased`}>
         {/* <Header /> */}
-        <main>
+        <main className="h-full">
           {children}
         </main>
       </body>
