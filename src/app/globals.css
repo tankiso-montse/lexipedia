@@ -32,6 +32,13 @@ html {
   font-family: var(--font-averia) Arial, Helvetica, sans-serif;
 }
 
+@media screen and (max-width: 1024px) {
+  html {
+    font-size: 14px;
+  }
+  
+}
+
 html, body {
   height: 100%;
 }
