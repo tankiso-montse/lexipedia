@@ -20,8 +20,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${averiaSerifLibre.variable} antialiased`}>
+    <html lang="en" className={`${averiaSerifLibre.variable}`}>
+      <body className={`antialiased`}>
         {/* <Header /> */}
         <main className="h-full">
           {children}
