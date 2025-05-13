@@ -1,15 +1,18 @@
-import { getWordDefinition } from '@/services/dictionaryService'
+import { getWordDefinition, getWordExample } from '@/services/dictionaryService'
 import React from 'react'
 
 async function TestOut() {
-  const wordDefinition = await getWordDefinition()
+  const [wordDefinition, wordExample] = await Promise.all([getWordDefinition(), getWordExample()])
 
   return (
-    <div>
-      <h3>{wordDefinition?.definition}</h3>
+    <>
+    <div className='flex flex-col items-center justify-center'>
+      <h1>{wordDefinition?.word}</h1>
       <span>{wordDefinition?.partOfSpeech}</span>
-      <p>{wordDefinition?.word}</p>
+      <h3>{wordDefinition?.definition}</h3>
+      <p>{wordExample?.example}</p>
     </div>
+    </>
   )
 }
 
