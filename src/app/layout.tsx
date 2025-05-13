@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import {Averia_Serif_Libre } from "next/font/google";
 import "./globals.css";
-import Header from "./components/header";
 
 const averiaSerifLibre = Averia_Serif_Libre({
   weight: "400",
@@ -22,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${averiaSerifLibre.variable}`}>
       <body className={`antialiased`}>
-        {/* <Header /> */}
+        
         <main className="h-full">
           {children}
         </main>
