@@ -1,4 +1,4 @@
-import { wordDefinition, wordExample } from "@/app/types/apiTypes";
+import { wordAudio, wordDefinition, wordExample } from "@/app/types/apiTypes";
 
 export async function getWordDefinition() {
   const response = await fetch(process.env.NEXT_PUBLIC_HOSTNAME + `/api/search/definitions`)
@@ -28,9 +28,29 @@ export async function getWordExample() {
     const wordExample: wordExample = {
       example: data.text,
     }
-      
     return wordExample;
   } catch (error) {
     console.error('Error fetching word example data:', error);
+  }
+}
+
+
+export async function getWordAudio() {
+  const response = await fetch(process.env.NEXT_PUBLIC_HOSTNAME + `/api/search/audio`)
+  try {
+    const data = await response.json();
+    if (data.length > 1) {
+      const wordAudio: wordAudio = {
+        audio: data[1].fileUrl,
+      };
+      return wordAudio;
+    } else {
+      const wordAudio: wordAudio = {
+        audio: data[0].fileUrl,
+      };
+      return wordAudio;
+    }
+  } catch (error) {
+    console.error('Error fetching word audio data:', error);
   }
 }
