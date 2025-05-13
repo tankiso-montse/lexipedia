@@ -19,3 +19,27 @@ export type searchedWord = {
     resolution?: string;
   };
 }
+
+
+export type wordDefinition = {
+  word: string;
+  partOfSpeech: string;
+  definition: string;
+}
+
+export type wordAudio = {
+  audio: string;
+}
+
+export type wordPronounciation = {
+  pronounciation: string;
+}
+
+export type wordExample = {
+  example: string;
+}
+
+export type relatedWords = {
+  antonyms: string[];
+  synonyms: string[];
+}
