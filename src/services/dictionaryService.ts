@@ -4,10 +4,11 @@ import {
   wordAudio,
   wordDefinition,
   wordExample,
+  wordOfTheDay,
   wordPronounciation,
 } from "@/app/types/apiTypes";
 
-export async function getWordDefinition() {
+async function getWordDefinition() {
   const response = await fetch(
     process.env.NEXT_PUBLIC_HOSTNAME + `/api/search/definitions`
   );
@@ -30,7 +31,7 @@ export async function getWordDefinition() {
   }
 }
 
-export async function getWordExample() {
+async function getWordExample() {
   const response = await fetch(
     process.env.NEXT_PUBLIC_HOSTNAME + `/api/search/example`
   );
@@ -45,7 +46,7 @@ export async function getWordExample() {
   }
 }
 
-export async function getWordAudio() {
+async function getWordAudio() {
   const response = await fetch(
     process.env.NEXT_PUBLIC_HOSTNAME + `/api/search/audio`
   );
@@ -67,7 +68,7 @@ export async function getWordAudio() {
   }
 }
 
-export async function getPronounciation() {
+async function getPronounciation() {
   const response = await fetch(
     process.env.NEXT_PUBLIC_HOSTNAME + `/api/search/pronounciations`
   );
@@ -84,7 +85,7 @@ export async function getPronounciation() {
   }
 }
 
-export async function getRelatedWords() {
+async function getRelatedWords() {
   const response = await fetch(
     process.env.NEXT_PUBLIC_HOSTNAME + `/api/search/related-words`
   );
@@ -140,6 +141,28 @@ export async function getSearchedWord() {
       message: "Please try again with a different word.",
       resolution: "Check the spelling or try a different word.",
     },
+  };
+  return searchedWord;
+}
+
+export async function getWordOfTheDay() {
+  const response = await fetch(process.env.NEXT_PUBLIC_HOSTNAME + `/api/wordOfTheDay`);
+  if (!response.ok) {
+    throw new Error("Could not fetch word of the day from backend");
   }
-   return searchedWord;
+  const data = await response.json();
+  const wordOfTheDay: wordOfTheDay = {
+    definitions: [
+      {
+        word: data.word,
+        partOfSpeech: data.definitions[0].partOfSpeech,
+        definition: data.definitions[0].text,
+      },
+    ],
+    examples: [{
+      example: data.examples[0].text,
+    }],
+    note: data.note,
+  };
+  return wordOfTheDay;
 }

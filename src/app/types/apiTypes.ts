@@ -35,3 +35,10 @@ export type searchedWord = {
     resolution?: string;
   };
 }
+
+export type wordOfTheDay = {
+  definitions: wordDefinition[];
+  examples: wordExample[];
+  audio?: wordAudio;
+  note: string;
+}
