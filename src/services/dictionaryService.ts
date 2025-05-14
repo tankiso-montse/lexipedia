@@ -1,5 +1,6 @@
 import {
   relatedWords,
+  searchedWord,
   wordAudio,
   wordDefinition,
   wordExample,
@@ -104,11 +105,41 @@ export async function getRelatedWords() {
           return {
             antonyms: [],
             synonyms: [],
-          }
+          };
         }
       }
     }
   } catch (error) {
     console.error("Error fetching related words data:", error);
   }
+}
+
+export async function getSearchedWord() {
+  const [
+    wordDefinition,
+    wordExample,
+    wordAudio,
+    wordPronounciation,
+    relatedWords,
+  ] = await Promise.all([
+    getWordDefinition(),
+    getWordExample(),
+    getWordAudio(),
+    getPronounciation(),
+    getRelatedWords(),
+  ]);
+
+  const searchedWord: searchedWord = {
+    wordDefinition: wordDefinition,
+    wordExample: wordExample,
+    wordAudio: wordAudio,
+    wordPronounciation: wordPronounciation,
+    relatedWords: relatedWords,
+    wordNotFound: {
+      title: "Word not found",
+      message: "Please try again with a different word.",
+      resolution: "Check the spelling or try a different word.",
+    },
+  }
+   return searchedWord;
 }

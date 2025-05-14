@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 
 export async function GET() {
-  const searchQuery = "happy";
+  const searchQuery = "aggressive";
   const response = await fetch(
     `https://api.wordnik.com/v4/word.json/${searchQuery}/relatedWords?useCanonical=false&limitPerRelationshipType=5&api_key=${process.env.WORDNIK_API_KEY}`
   );
