@@ -7,7 +7,7 @@ export async function GET() {
   );
   if (!response.ok) {
     return NextResponse.json(
-      { error: "Failed to fetch word pronounciation data" },
+      { error: "Failed to fetch word Pronunciation data" },
       { status: 500 }
     );
   }

@@ -5,7 +5,7 @@ import {
   wordDefinition,
   wordExample,
   wordOfTheDay,
-  wordPronounciation,
+  wordPronunciation,
 } from "@/app/types/apiTypes";
 
 async function getWordDefinition() {
@@ -68,20 +68,20 @@ async function getWordAudio() {
   }
 }
 
-async function getPronounciation() {
+async function getPronunciation() {
   const response = await fetch(
-    process.env.NEXT_PUBLIC_HOSTNAME + `/api/search/pronounciations`
+    process.env.NEXT_PUBLIC_HOSTNAME + `/api/search/Pronunciations`
   );
   try {
     const data = await response.json();
     if (data.length > 0) {
-      const wordPronounciation: wordPronounciation = {
-        pronounciation: data[0].raw,
+      const wordPronunciation: wordPronunciation = {
+        pronunciation: data[0].raw,
       };
-      return wordPronounciation;
+      return wordPronunciation;
     }
   } catch (error) {
-    console.error("Error fetching word pronounciation data:", error);
+    console.error("Error fetching word Pronunciation data:", error);
   }
 }
 
@@ -92,24 +92,20 @@ async function getRelatedWords() {
   try {
     const data = await response.json();
     if (data.length > 0) {
-      for (let object = 0; object < data.length; object++) {
+      for (let i = 0; i < data.length; i++) {
         if (
-          data[object].relationshipType === "synonym" ||
-          data[object].relationshipType === "antonym"
+          data[i].relationshipType === "synonym" ||
+          data[i].relationshipType === "antonym"
         ) {
           const relatedWords: relatedWords = {
-            antonyms: data[object].words,
-            synonyms: data[object].words,
+            antonyms: data[i].words,
+            synonyms: data[i].words,
           };
           return relatedWords;
-        } else {
-          return {
-            antonyms: [],
-            synonyms: [],
-          };
         }
       }
     }
+    return { antonyms: [], synonyms: [] };
   } catch (error) {
     console.error("Error fetching related words data:", error);
   }
@@ -120,13 +116,13 @@ export async function getSearchedWord() {
     wordDefinition,
     wordExample,
     wordAudio,
-    wordPronounciation,
+    wordPronunciation,
     relatedWords,
   ] = await Promise.all([
     getWordDefinition(),
     getWordExample(),
     getWordAudio(),
-    getPronounciation(),
+    getPronunciation(),
     getRelatedWords(),
   ]);
 
@@ -134,7 +130,7 @@ export async function getSearchedWord() {
     wordDefinition: wordDefinition,
     wordExample: wordExample,
     wordAudio: wordAudio,
-    wordPronounciation: wordPronounciation,
+    wordPronunciation: wordPronunciation,
     relatedWords: relatedWords,
     wordNotFound: {
       title: "Word not found",
@@ -146,7 +142,9 @@ export async function getSearchedWord() {
 }
 
 export async function getWordOfTheDay() {
-  const response = await fetch(process.env.NEXT_PUBLIC_HOSTNAME + `/api/wordOfTheDay`);
+  const response = await fetch(
+    process.env.NEXT_PUBLIC_HOSTNAME + `/api/wordOfTheDay`
+  );
   if (!response.ok) {
     throw new Error("Could not fetch word of the day from backend");
   }
@@ -159,9 +157,11 @@ export async function getWordOfTheDay() {
         definition: data.definitions[0].text,
       },
     ],
-    examples: [{
-      example: data.examples[0].text,
-    }],
+    examples: [
+      {
+        example: data.examples[0].text,
+      },
+    ],
     note: data.note,
   };
   return wordOfTheDay;
