@@ -2,7 +2,7 @@ import React from 'react'
 
 type infoBlockProps = {
   heading: string
-  content: string
+  content: string | undefined
 }
 
 function InfoBlock({heading, content}: infoBlockProps) {

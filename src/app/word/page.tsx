@@ -28,9 +28,9 @@ export default async function SearchPage() {
         </div>
         <div className="h-11/12 w-0.5 bg-[#938048] mb-6"></div>
         <div className="pl-8 pr-20 pt-16 flex flex-col gap-4">
-          <div className="flex flex-col">
+          <div className="flex flex-col gap-3">
             <span className="text-8xl">{searchedTerm.wordDefinition?.word}</span>
-            <span className="pl-1 text-xl">är′kĭ-tĕkt</span>
+            <span className="pl-1 text-xl">{searchedTerm.wordPronunciation?.pronunciation}</span>
           </div>
           <div className="flex gap-2">
             <PosButton partsOfSpeech="noun" />
@@ -39,12 +39,11 @@ export default async function SearchPage() {
           </div>
           <InfoBlock
             heading="Definition:"
-            content="A creature that sleeps two hours a week consumes entirely too much caffeine and likes overuse,
-                    words such as juxtaposition."
+            content={searchedTerm.wordDefinition?.definition}
           />
           <InfoBlock
             heading="Examples:"
-            content="The architect was a master of his craft, designing buildings that were both functional and beautiful."
+            content={searchedTerm.wordExample?.example}
           />
         </div>
       </div>
