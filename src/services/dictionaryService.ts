@@ -70,7 +70,7 @@ async function getWordAudio() {
 
 async function getPronunciation() {
   const response = await fetch(
-    process.env.NEXT_PUBLIC_HOSTNAME + `/api/search/Pronunciations`
+    process.env.NEXT_PUBLIC_HOSTNAME + `/api/search/pronunciations`
   );
   try {
     const data = await response.json();
