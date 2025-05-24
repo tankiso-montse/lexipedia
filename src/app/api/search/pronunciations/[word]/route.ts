@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(req: NextRequest, { params }: { params: { word: string } }) {
-  const word = await params.word;
+export async function GET(req: NextRequest, { params }: { params: Promise<{ word: string }>}) {
+  const word = (await params).word;
   const response = await fetch(
     `https://api.wordnik.com/v4/word.json/${word}/pronunciations?useCanonical=false&limit=50&api_key=${process.env.WORDNIK_API_KEY}`
   );
