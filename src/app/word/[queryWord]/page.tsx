@@ -1,21 +1,13 @@
 
-// import { Search } from "lucide-react";
-// import { useState, useEffect } from "react";
-// import { useRouter } from "next/navigation";
-import SearchBar from "../components/SearchBar";
-import PosButton from "../components/PosButton";
-import InfoBlock from "../components/InfoBlock";
+import InfoBlock from "@/app/components/InfoBlock";
+import PosButton from "@/app/components/PosButton";
+import SearchBar from "@/app/components/SearchBar";
 import { getSearchedWord } from "@/services/dictionaryService";
 
-export default async function SearchPage() {
-   const searchedTerm = await getSearchedWord()
-  // const router = useRouter();
-  // const [query, setQuery] = useState("");
-  // const [isTyping, setIsTyping] = useState(false);
+export default async function SearchPage({ params }: { params: Promise<{ queryWord: string }> }) {
 
-  // useEffect(() => {
-  //   setIsTyping(query.trim() !== "");
-  // }, [query]);
+ const { queryWord } = await params;
+  const searchedTerm = await getSearchedWord(queryWord)
 
   return (
     <div className="bg-secondary h-full">
