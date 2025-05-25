@@ -6,7 +6,7 @@ import {
   wordExample,
   wordOfTheDay,
   wordPronunciation,
-} from "@/app/types/apiTypes";
+} from "@/types/apiTypes";
 
 async function getWordDefinition(word: string) {
   const response = await fetch(
