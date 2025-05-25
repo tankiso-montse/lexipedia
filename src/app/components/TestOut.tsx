@@ -1,11 +1,11 @@
-import { getSearchedWord } from '@/services/dictionaryService'
+// import { getSearchedWord } from '@/services/dictionaryService'
 import React from 'react'
 
 async function TestOut() {
-  const searchedTerm = await getSearchedWord()
+  // const searchedTerm = await getSearchedWord(word)
   return (
     <>
-      <div className='flex flex-col items-center justify-center gap-4'>
+      {/* <div className='flex flex-col items-center justify-center gap-4'>
         <h1>{searchedTerm.wordDefinition?.word}</h1>
         <h3>{searchedTerm.wordPronunciation?.pronunciation}</h3>
         <span>{searchedTerm.wordDefinition?.partOfSpeech}</span>
@@ -14,7 +14,7 @@ async function TestOut() {
         <audio controls autoPlay>
           <source src={searchedTerm.wordAudio?.audio} />
         </audio>
-      </div>
+      </div> */}
     </>
   )
 }
