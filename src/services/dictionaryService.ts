@@ -117,13 +117,11 @@ export async function getSearchedWord(word: string) {
   const [
     wordDefinition,
     wordExample,
-    wordAudio,
     wordPronunciation,
     relatedWords,
   ] = await Promise.all([
     getWordDefinition(word),
     getWordExample(word),
-    getWordAudio(word),
     getPronunciation(word),
     getRelatedWords(word),
   ]);
@@ -131,7 +129,6 @@ export async function getSearchedWord(word: string) {
   const searchedWord: searchedWord = {
     wordDefinition: wordDefinition,
     wordExample: wordExample,
-    wordAudio: wordAudio,
     wordPronunciation: wordPronunciation,
     relatedWords: relatedWords,
     wordNotFound: {
