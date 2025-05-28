@@ -1,6 +1,7 @@
 'use client';
 import { Search } from "lucide-react";
 import { useRouter } from 'next/navigation';
+import SearchBar from "../components/SearchBar";
 import { useState } from "react";
 
 export default function SearchPage() {
@@ -41,14 +42,20 @@ export default function SearchPage() {
             <button onClick={handleSearch}  className="w-[100px] bg-[#804a04] text-white px-4 py-2 rounded-full hover:bg-[#d3740e] transition">
                 Search
               </button>
+
+      <div className="bg-secondary h-full">
+        <div className=" flex items-center justify-center z-10 h-1/6 ">
+          <SearchBar></SearchBar>
+        </div>
+        <div className="h-5/5 flex gap-4 absolute w-5/6 right-0 text-textColor ">
+          <div className="h-6/8 w-0.5 bg-amber-200 ml-40"></div>
+          {/* bg-[#938048]  colour for text */}
+          <div className="flex pt-45 pl-20 flex-col gap-5">
+          <span className="text-7xl">Type a word to lookup</span>
+          <span className="text-4xl pl-23 pt-0">Lexipedia will reveal its meaning</span>
           </div>
-        
         </div>
 
-        <div className="absolute top-[400px] z-30">
-          <p className="font-averia text-[#b69e58] text-6xl">Type a word to lookup</p>
-          <p className="mt-5 ml-15 font-averia text-[#a59051] text-3xl">Lexipedia will reveal its meaning</p>
-        </div>
       </div>
       
 
