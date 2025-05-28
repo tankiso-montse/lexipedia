@@ -1,11 +1,17 @@
 'use client';
-
 import { Search } from "lucide-react";
 import { useRouter } from 'next/navigation';
+import { useState } from "react";
 
 export default function SearchPage() {
-
   const router = useRouter();
+  const [queryWord, setQueryWord] = useState<string>("");
+
+  const handleSearch = () => {
+    if (queryWord.trim() !== "") {
+      router.push(`/word/${queryWord}`)
+    }
+  }
   
     return (
       <div className="relative min-h-screen flex items-center justify-center text-black">
@@ -26,11 +32,13 @@ export default function SearchPage() {
               <input
                 type="text"
                 placeholder="Search for a word"
+                value={queryWord}
+                onChange={(e) => setQueryWord(e.target.value)}
                 className="flex-grow bg-transparent outline-none text-[rgba(244,244,244,0.88)] placeholder-[rgba(187,187,187,0.88)] "
               />
 
               {/* Curved Search Button */}
-            <button onClick={() => router.push('/word')}  className="w-[100px] bg-[#804a04] text-white px-4 py-2 rounded-full hover:bg-[#d3740e] transition">
+            <button onClick={handleSearch}  className="w-[100px] bg-[#804a04] text-white px-4 py-2 rounded-full hover:bg-[#d3740e] transition">
                 Search
               </button>
           </div>
