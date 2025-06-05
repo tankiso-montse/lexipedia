@@ -6,11 +6,11 @@ import {
   wordExample,
   wordOfTheDay,
   wordPronunciation,
-} from "@/app/types/apiTypes";
+} from "@/types/apiTypes";
 
-async function getWordDefinition() {
+async function getWordDefinition(word: string) {
   const response = await fetch(
-    process.env.NEXT_PUBLIC_HOSTNAME + `/api/search/definitions`
+    process.env.NEXT_PUBLIC_HOSTNAME + `/api/search/definitions/${word}`
   );
   try {
     const data = await response.json();
@@ -25,15 +25,17 @@ async function getWordDefinition() {
           return wordDefinition;
         }
       }
+    } else {
+      return undefined;
     }
   } catch (error) {
     console.error("Error fetching word definition data:", error);
   }
 }
 
-async function getWordExample() {
+async function getWordExample(word: string) {
   const response = await fetch(
-    process.env.NEXT_PUBLIC_HOSTNAME + `/api/search/example`
+    process.env.NEXT_PUBLIC_HOSTNAME + `/api/search/example/${word}`
   );
   try {
     const data = await response.json();
@@ -46,9 +48,9 @@ async function getWordExample() {
   }
 }
 
-async function getWordAudio() {
+async function getWordAudio(word: string) {
   const response = await fetch(
-    process.env.NEXT_PUBLIC_HOSTNAME + `/api/search/audio`
+    process.env.NEXT_PUBLIC_HOSTNAME + `/api/search/audio/${word}`
   );
   try {
     const data = await response.json();
@@ -68,9 +70,9 @@ async function getWordAudio() {
   }
 }
 
-async function getPronunciation() {
+async function getPronunciation(word: string) {
   const response = await fetch(
-    process.env.NEXT_PUBLIC_HOSTNAME + `/api/search/Pronunciations`
+    process.env.NEXT_PUBLIC_HOSTNAME + `/api/search/pronunciations/${word}`
   );
   try {
     const data = await response.json();
@@ -85,9 +87,9 @@ async function getPronunciation() {
   }
 }
 
-async function getRelatedWords() {
+async function getRelatedWords(word: string) {
   const response = await fetch(
-    process.env.NEXT_PUBLIC_HOSTNAME + `/api/search/related-words`
+    process.env.NEXT_PUBLIC_HOSTNAME + `/api/search/related-words/${word}`
   );
   try {
     const data = await response.json();
@@ -111,25 +113,22 @@ async function getRelatedWords() {
   }
 }
 
-export async function getSearchedWord() {
+export async function getSearchedWord(word: string) {
   const [
     wordDefinition,
     wordExample,
-    wordAudio,
     wordPronunciation,
     relatedWords,
   ] = await Promise.all([
-    getWordDefinition(),
-    getWordExample(),
-    getWordAudio(),
-    getPronunciation(),
-    getRelatedWords(),
+    getWordDefinition(word),
+    getWordExample(word),
+    getPronunciation(word),
+    getRelatedWords(word),
   ]);
 
   const searchedWord: searchedWord = {
     wordDefinition: wordDefinition,
     wordExample: wordExample,
-    wordAudio: wordAudio,
     wordPronunciation: wordPronunciation,
     relatedWords: relatedWords,
     wordNotFound: {

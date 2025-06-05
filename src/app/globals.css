@@ -5,6 +5,7 @@
   --secondary: #7e472c66;
   --search-bar: #d9d9d933;
   --tertiary: #fde68acc;
+  --primary-btn: #584B1C;
   --foreground: #171717;
 }
 
@@ -14,6 +15,7 @@
   --color-foreground: var(--foreground);
   --color-searchBar: var(--search-bar);
   --color-textColor: var(--tertiary);
+  --color-primary-btn: var(--primary-btn);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-averia: var(--font-averia-serif-libre);
